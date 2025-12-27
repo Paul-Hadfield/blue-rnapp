@@ -2,6 +2,22 @@
 
 This file provides context to Claude Code when working with this repository.
 
+## Development Approach
+
+When working on this project, assume the developer is:
+- An experienced React Native developer familiar with both Expo and pure React Native
+- Knowledgeable about native development (iOS/Android)
+- Focused on UI/UX excellence with strong attention to design details
+- Committed to accessibility best practices
+- Values clean, maintainable code with proper TypeScript typing
+
+When suggesting solutions:
+- Prioritize user experience and accessibility
+- Consider platform-specific design patterns (iOS Human Interface Guidelines, Material Design)
+- Ensure proper accessibility labels, roles, and navigation
+- Use semantic components and proper contrast ratios
+- Consider both Expo-managed and bare workflow approaches when relevant
+
 ## Project Overview
 
 This is a Bluesky app built with Expo and React Native. It's currently in early development with a basic Expo starter setup.
