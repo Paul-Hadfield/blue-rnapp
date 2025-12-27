@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   ActivityIndicator,
   TouchableOpacity,
   RefreshControl,
   Image,
   Platform,
 } from 'react-native';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { FlashList } from '@shopify/flash-list';
 import { useAuth } from '../contexts/AuthContext';
 import type { AppBskyFeedDefs } from '@atproto/api';
@@ -16,6 +16,7 @@ import type { AppBskyFeedDefs } from '@atproto/api';
 type FeedViewPost = AppBskyFeedDefs.FeedViewPost;
 
 export default function TimelineScreen() {
+  const { theme } = useUnistyles();
   const { agent, logout } = useAuth();
   const [posts, setPosts] = useState<FeedViewPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -161,103 +162,103 @@ export default function TimelineScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.background,
   },
   centered: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.background,
   },
   loadingText: {
-    marginTop: 12,
-    fontSize: 16,
-    color: '#666',
+    marginTop: theme.spacing.md,
+    fontSize: theme.fontSize.lg,
+    color: theme.colors.textSecondary,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingHorizontal: theme.spacing.lg,
+    paddingVertical: theme.spacing.md,
     borderBottomWidth: 1,
-    borderBottomColor: '#e1e8ed',
-    paddingTop: Platform.OS === 'ios' ? 60 : 12,
+    borderBottomColor: theme.colors.border,
+    paddingTop: Platform.OS === 'ios' ? 60 : theme.spacing.md,
   },
   headerTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#1185fe',
+    fontSize: theme.fontSize.xl,
+    fontWeight: theme.fontWeight.bold,
+    color: theme.colors.primary,
   },
   logoutButton: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 6,
-    backgroundColor: '#f0f0f0',
+    paddingHorizontal: theme.spacing.md,
+    paddingVertical: theme.spacing.xs + 2,
+    borderRadius: theme.borderRadius.sm,
+    backgroundColor: theme.colors.surfaceElevated,
   },
   logoutText: {
-    fontSize: 14,
-    color: '#333',
-    fontWeight: '600',
+    fontSize: theme.fontSize.md,
+    color: theme.colors.text,
+    fontWeight: theme.fontWeight.semibold,
   },
   postContainer: {
-    padding: 16,
+    padding: theme.spacing.lg,
     borderBottomWidth: 1,
-    borderBottomColor: '#e1e8ed',
+    borderBottomColor: theme.colors.border,
   },
   postHeader: {
     flexDirection: 'row',
-    marginBottom: 8,
+    marginBottom: theme.spacing.sm,
   },
   avatar: {
     width: 48,
     height: 48,
     borderRadius: 24,
-    marginRight: 12,
+    marginRight: theme.spacing.md,
   },
   authorInfo: {
     flex: 1,
     justifyContent: 'center',
   },
   displayName: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#14171a',
+    fontSize: theme.fontSize.lg,
+    fontWeight: theme.fontWeight.bold,
+    color: theme.colors.text,
   },
   handle: {
-    fontSize: 14,
-    color: '#657786',
+    fontSize: theme.fontSize.md,
+    color: theme.colors.textSecondary,
     marginTop: 2,
   },
   postText: {
-    fontSize: 15,
-    color: '#14171a',
+    fontSize: theme.fontSize.base,
+    color: theme.colors.text,
     lineHeight: 20,
-    marginBottom: 8,
+    marginBottom: theme.spacing.sm,
   },
   imageContainer: {
-    marginTop: 8,
-    marginBottom: 8,
-    borderRadius: 12,
+    marginTop: theme.spacing.sm,
+    marginBottom: theme.spacing.sm,
+    borderRadius: theme.borderRadius.lg,
     overflow: 'hidden',
   },
   postImage: {
     width: '100%',
     height: 200,
-    borderRadius: 12,
+    borderRadius: theme.borderRadius.lg,
   },
   postFooter: {
-    marginTop: 8,
+    marginTop: theme.spacing.sm,
   },
   postStats: {
-    fontSize: 13,
-    color: '#657786',
+    fontSize: theme.fontSize.sm,
+    color: theme.colors.textSecondary,
   },
   footer: {
     paddingVertical: 20,
     alignItems: 'center',
   },
-});
+}));
