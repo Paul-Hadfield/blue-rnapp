@@ -1,3 +1,4 @@
+import './styles/unistyles';
 import { StatusBar } from 'expo-status-bar';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import LoginScreen from './screens/LoginScreen';
