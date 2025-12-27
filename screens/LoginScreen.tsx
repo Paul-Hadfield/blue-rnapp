@@ -4,15 +4,16 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
   KeyboardAvoidingView,
   Platform,
   Alert,
   ActivityIndicator,
 } from 'react-native';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function LoginScreen() {
+  const { theme } = useUnistyles();
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -55,7 +56,7 @@ export default function LoginScreen() {
             value={identifier}
             onChangeText={setIdentifier}
             placeholder="username.bsky.social or email"
-            placeholderTextColor="#999"
+            placeholderTextColor={theme.colors.textTertiary}
             autoCapitalize="none"
             autoCorrect={false}
             keyboardType="email-address"
@@ -71,7 +72,7 @@ export default function LoginScreen() {
             value={password}
             onChangeText={setPassword}
             placeholder="Enter your password"
-            placeholderTextColor="#999"
+            placeholderTextColor={theme.colors.textTertiary}
             secureTextEntry
             textContentType="password"
             editable={!isLoading}
@@ -99,61 +100,62 @@ export default function LoginScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.background,
   },
   content: {
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 24,
+    paddingHorizontal: theme.spacing.xl,
   },
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#1185fe',
-    marginBottom: 8,
+    fontSize: theme.fontSize.xxl,
+    fontWeight: theme.fontWeight.bold,
+    color: theme.colors.primary,
+    marginBottom: theme.spacing.sm,
     textAlign: 'center',
   },
   subtitle: {
-    fontSize: 16,
-    color: '#666',
+    fontSize: theme.fontSize.lg,
+    color: theme.colors.textSecondary,
     marginBottom: 40,
     textAlign: 'center',
   },
   form: {
-    gap: 16,
+    gap: theme.spacing.lg,
   },
   label: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#333',
-    marginBottom: 4,
+    fontSize: theme.fontSize.md,
+    fontWeight: theme.fontWeight.semibold,
+    color: theme.colors.text,
+    marginBottom: theme.spacing.xs,
   },
   input: {
     height: 48,
     borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 8,
-    paddingHorizontal: 16,
-    fontSize: 16,
-    backgroundColor: '#fff',
+    borderColor: theme.colors.border,
+    borderRadius: theme.borderRadius.md,
+    paddingHorizontal: theme.spacing.lg,
+    fontSize: theme.fontSize.lg,
+    backgroundColor: theme.colors.surface,
+    color: theme.colors.text,
   },
   button: {
     height: 48,
-    backgroundColor: '#1185fe',
-    borderRadius: 8,
+    backgroundColor: theme.colors.primary,
+    borderRadius: theme.borderRadius.md,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 8,
+    marginTop: theme.spacing.sm,
   },
   buttonDisabled: {
     opacity: 0.6,
   },
   buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
+    color: theme.colors.buttonText,
+    fontSize: theme.fontSize.lg,
+    fontWeight: theme.fontWeight.semibold,
   },
-});
+}));
